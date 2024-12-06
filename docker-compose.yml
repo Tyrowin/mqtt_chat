@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  hivemq:
+    image: hivemq/hivemq4
+    ports:
+      # MQTT port
+      - "1883:1883"
+      # MQTT over WebSocket
+      - "8000:8000"
+      # HiveMQ Control Center
+      - "8080:8080"
+    volumes:
+      - hivemq-data:/opt/hivemq/data
+      - hivemq-log:/opt/hivemq/log
+      # If you want to add custom config:
+      # - ./config.xml:/opt/hivemq/conf/config.xml
+    environment:
+      HIVEMQ_CONTROL_CENTER_USER: admin
+      HIVEMQ_CONTROL_CENTER_PASSWORD: admin
+
+volumes:
+  hivemq-data:
+  hivemq-log:
